@@ -2,9 +2,11 @@ import pygame
 from pygame.locals import *
 import time
 import random
+from pygamepopup.menu_manager import MenuManager
 
 SIZE = 40
 BACKGROUND_COLOR = (110, 110, 5)
+
 
 class Apple:
     def __init__(self, parent_screen):
@@ -18,8 +20,9 @@ class Apple:
         pygame.display.flip()
 
     def move(self):
-        self.x = random.randint(1,24)*SIZE
-        self.y = random.randint(1,19)*SIZE
+        self.x = random.randint(1, 24) * SIZE
+        self.y = random.randint(1, 19) * SIZE
+
 
 class Snake:
     def __init__(self, parent_screen):
@@ -27,9 +30,10 @@ class Snake:
         self.image = pygame.image.load("block.jpg").convert()
         self.direction = 'down'
 
-        self.length = 1
-        self.x = [40]
-        self.y = [40]
+        # starting the snake game with the snake having 20 blocks for length
+        self.length = 20
+        self.x = [40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40]
+        self.y = [40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40]
 
     def move_left(self):
         self.direction = 'left'
@@ -45,9 +49,9 @@ class Snake:
 
     def walk(self):
         # update body
-        for i in range(self.length-1,0,-1):
-            self.x[i] = self.x[i-1]
-            self.y[i] = self.y[i-1]
+        for i in range(self.length - 1, 0, -1):
+            self.x[i] = self.x[i - 1]
+            self.y[i] = self.y[i - 1]
 
         # update head
         if self.direction == 'left':
@@ -73,11 +77,18 @@ class Snake:
         self.x.append(-1)
         self.y.append(-1)
 
+    def decrease_length(self):
+        self.length -= 1
+        self.x.append(-1)
+        self.y.append(-1)
+
+
+# Creating basic game interface:
 class Game:
     def __init__(self):
         pygame.init()
         pygame.display.set_caption("EC327 Snake Game")
-        self.surface = pygame.display.set_mode((1000, 800))
+        self.surface = pygame.display.set_mode((1000, 800))  # set mode: setting the window size of the game
         self.snake = Snake(self.surface)
         self.snake.draw()
         self.apple = Apple(self.surface)
@@ -86,7 +97,6 @@ class Game:
     def reset(self):
         self.snake = Snake(self.surface)
         self.apple = Apple(self.surface)
-
 
     def is_collision(self, x1, y1, x2, y2):
         if x1 >= x2 and x1 < x2 + SIZE:
@@ -102,7 +112,8 @@ class Game:
 
         # snake eating apple scenario
         if self.is_collision(self.snake.x[0], self.snake.y[0], self.apple.x, self.apple.y):
-            self.snake.increase_length()
+
+            self.snake.decrease_length()
             self.apple.move()
 
         # snake colliding with itself
@@ -111,12 +122,12 @@ class Game:
                 raise "Collision Occured"
 
     def display_score(self):
-        font = pygame.font.SysFont('arial',30)
-        score = font.render(f"Score: {self.snake.length}",True,(200,200,200))
-        self.surface.blit(score,(850,10))
+        font = pygame.font.SysFont('arial', 30)
+        score = font.render(f"Score: {self.snake.length}", True, (200, 200, 200))
+        self.surface.blit(score, (850, 10))
 
     def show_game_over(self):
-        self.surface.fill(BACKGROUND_COLOR)
+        self.surface.fill(BACKGROUND_COLOR)  # setting background color of the main window
         font = pygame.font.SysFont('arial', 30)
         line1 = font.render(f"Game is over! Your score is {self.snake.length}", True, (255, 255, 255))
         self.surface.blit(line1, (200, 300))
@@ -164,6 +175,7 @@ class Game:
                 self.reset()
 
             time.sleep(.15)
+
 
 if __name__ == '__main__':
     game = Game()
