@@ -16,35 +16,48 @@ class Math:
 
     def generate_operator(self):
         #determine which operator to use
-        num = random.rand(1,4)
+        num = random.randint(1,4)
         if num == 1:
-            self.operator = '+'
+            operator = '+'
         elif num == 2:
-            self.operator = '-'
+            operator = '-'
         elif num == 3:
-            self.operator = '*'
+            operator = '*'
         elif num == 4:
-            self.operator = '/'
+            operator = '/'
+        return operator
 
-    def generate_num(self):
+    def generate_num1(self):
         #generate numbers
-        self.first_num = random.randint(1,100)
-        self.second_num = random.randint(1,100)
+        num = random.randint(1,100)
+        return num
+
+    def generate_num2(self):
+        #generate numbers
+        num = random.randint(1,100)
+        return num
+    
 
     def solve(self):
         first = self.first_num
         second = self.second_num
         if self.operator == '+':
-            self.answer = first + second
+            answer = first + second
         elif self.operator == '-':
-            self.answer = first - second
+            answer = first - second
         elif self.operator == '*':
-            self.answer = first * second
+            answer = first * second
         elif self.operator == '/':
-            self.answer = first / second
+            answer = first / second
+        return answer
 
-    def display_math_problem(self):
-        pass
+    def math_expression(self):
+        f = str(self.first_num)
+        s = str(self.second_num)
+        expression = f + " " + self.operator + " " + s
+        return expression
+
+    
 
     
 
