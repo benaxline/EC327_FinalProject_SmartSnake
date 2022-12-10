@@ -2,7 +2,7 @@ import pygame
 from pygame.locals import *
 import time
 import random
-from pygamepopup.menu_manager import MenuManager
+#from pygamepopup.menu_manager import MenuManager
 
 from Apple import *
 from Game import *
