@@ -7,6 +7,7 @@ import random
 from Apple import *
 from Game import *
 from Snake import *
+from Math import *
 
 SIZE = 40
 BACKGROUND_COLOR = (110, 110, 5)
@@ -24,6 +25,10 @@ class Game:
         self.apple.draw()
         self.snake_zero = False
         self.off_grid = False
+        self.math = Math()
+        self.pause = False
+        self.running = False
+        self.mode = ''
 
     def reset(self):
         self.snake = Snake(self.surface)
@@ -43,24 +48,32 @@ class Game:
         else:
             return False
 
+    
+
     def play(self):
+        
         self.snake.walk()
         self.apple.draw()
         self.display_score()
         pygame.display.flip()
 
-        # snake eating apple scenario
+        # snake eating apple scenario 
         if self.is_collision(self.snake.x[0], self.snake.y[0], self.apple.x, self.apple.y):
+            #self.pause = True
 
             self.snake.decrease_length() #decreases length
             self.apple.move() #apple moves
 
-        # snake colliding with itself
+        # snake colliding with itself (LOSE)
         for i in range(2, self.snake.length):
             if self.is_collision(self.snake.x[0], self.snake.y[0], self.snake.x[i], self.snake.y[i]):
                 raise "Collision Occured"
+        
+        # snake with zero length (WIN)
         if self.snake.length == 0:
             raise "Zero Length"
+
+        # snake off grid (LOSE)
         for i in range(2, self.snake.length):
             if self.is_off_grid(self.snake.x[0], self.snake.y[0]):
                 self.off_grid = True
@@ -129,20 +142,47 @@ class Game:
         # else:
         #     return True
 
-    def run(self):
-        running = True
-        pause = False
+    def menu(self):
+        #menu display
+        self.surface.fill(BACKGROUND_COLOR)  # setting background color of the main window
+        font = pygame.font.SysFont('arial', 30)
+        line1 = font.render(f"Choose mode: ", True, (255, 255, 255))
+        self.surface.blit(line1, (200, 300))
+        line2 = font.render("Press M key for math mode", True, (255, 255, 255))
+        self.surface.blit(line2, (200, 350))
+        line3 = font.render("Press T key for trivia mode", True, (255, 255, 255))
+        self.surface.blit(line3, (200, 400))
+        line4 = font.render("Press Escape to quit.", True, (255, 255, 255))
+        self.surface.blit(line4, (200, 450))
+        pygame.display.flip()
 
-        while running:
+        self.pause = False
+
+
+    def run(self):
+        self.menu()
+
+        self.running = True
+        self.pause = True
+        # self.menu()
+        while self.running:
             for event in pygame.event.get():
                 if event.type == KEYDOWN:
                     if event.key == K_ESCAPE:
-                        running = False
+                        self.running = False
 
                     if event.key == K_RETURN:
-                        pause = False
+                        self.pause = False
 
-                    if not pause:
+                    if event.key == K_m:
+                        self.mode = 'm'
+                        self.pause = False
+
+                    if event.key == K_t:
+                        self.mode = 't'
+                        self.pause = False
+
+                    if not self.pause:
                         if event.key == K_LEFT:
                             self.snake.move_left()
 
@@ -156,20 +196,18 @@ class Game:
                             self.snake.move_down()
 
                 elif event.type == QUIT:
-                    running = False
+                    self.running = False
             try:
-                
-               
-
-                if not pause:
+                if not self.pause:
                     self.play()
 
             except Exception as e:
                 #keep in this order - else it won't show the right end score!!!!
                 if self.snake.length == 0:
                     self.snake_zero = True
+                
                 self.end_of_game()
-                pause = True
+                self.pause = True
                 self.reset()
                 
 
