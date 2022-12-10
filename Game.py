@@ -7,21 +7,23 @@ from pygamepopup.menu_manager import MenuManager
 from Apple import *
 from Game import *
 from Snake import *
+from StartingMenu import *
 
 SIZE = 40
 BACKGROUND_COLOR = (110, 110, 5)
-
 
 
 class Game:
     def __init__(self):
         pygame.init()
         pygame.display.set_caption("EC327 Snake Game")
-        self.surface = pygame.display.set_mode((1000, 800))  # set mode: setting the window size of the game
+        set mode: setting the window size of the game
+        self.surface = pygame.display.set_mode((1000, 800))
         self.snake = Snake(self.surface)
         self.snake.draw()
         self.apple = Apple(self.surface)
         self.apple.draw()
+        self.menu = StartingMenu()
 
     def reset(self):
         self.snake = Snake(self.surface)
@@ -52,15 +54,19 @@ class Game:
 
     def display_score(self):
         font = pygame.font.SysFont('arial', 30)
-        score = font.render(f"Score: {self.snake.length}", True, (200, 200, 200))
+        score = font.render(
+            f"Score: {self.snake.length}", True, (200, 200, 200))
         self.surface.blit(score, (850, 10))
 
     def show_game_over(self):
-        self.surface.fill(BACKGROUND_COLOR)  # setting background color of the main window
+        # setting background color of the main window
+        self.surface.fill(BACKGROUND_COLOR)
         font = pygame.font.SysFont('arial', 30)
-        line1 = font.render(f"Game is over! Your score is {self.snake.length}", True, (255, 255, 255))
+        line1 = font.render(
+            f"Game is over! Your score is {self.snake.length}", True, (255, 255, 255))
         self.surface.blit(line1, (200, 300))
-        line2 = font.render("To play again press Enter. To exit press Escape!", True, (255, 255, 255))
+        line2 = font.render(
+            "To play again press Enter. To exit press Escape!", True, (255, 255, 255))
         self.surface.blit(line2, (200, 350))
 
         pygame.display.flip()
