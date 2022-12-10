@@ -23,6 +23,7 @@ class Game:
         self.apple = Apple(self.surface)
         self.apple.draw()
         self.snake_zero = False
+        self.off_grid = False
 
     def reset(self):
         self.snake = Snake(self.surface)
@@ -33,6 +34,14 @@ class Game:
             if y1 >= y2 and y1 < y2 + SIZE:
                 return True
         return False
+
+    def is_off_grid(grid, x, y):
+        if x > 1000 or x < 0:
+            return True
+        elif y > 800 or y < 0:
+            return True
+        else:
+            return False
 
     def play(self):
         self.snake.walk()
@@ -52,6 +61,10 @@ class Game:
                 raise "Collision Occured"
         if self.snake.length == 0:
             raise "Zero Length"
+        for i in range(2, self.snake.length):
+            if self.is_off_grid(self.snake.x[0], self.snake.y[0]):
+                self.off_grid = True
+                raise "Off Grid"
 
     def display_score(self):
         font = pygame.font.SysFont('arial', 30)
@@ -78,15 +91,30 @@ class Game:
 
         pygame.display.flip()
 
+    def show_off_grid(self):
+        self.surface.fill(BACKGROUND_COLOR)  # setting background color of the main window
+        font = pygame.font.SysFont('arial', 30)
+        line1 = font.render(f"You Lose! You went off the grid! Your score is {self.snake.length}", True, (255, 255, 255))
+        self.surface.blit(line1, (200, 300))
+        line2 = font.render("To play again press Enter. To exit press Escape!", True, (255, 255, 255))
+        self.surface.blit(line2, (200, 350))
+
+        pygame.display.flip()
+
     def end_of_game(self):
         if self.snake.length == 0:
             self.show_game_won()
             #self.show_game_over()
+        elif self.off_grid == True:
+            self.show_off_grid()
+            
         else:
             self.show_game_over()
             #self.show_game_won()
         # self.pause = True
         # self.reset()
+
+    
 
 
     def is_snakelength_zero(self):

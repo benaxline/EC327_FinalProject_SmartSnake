@@ -16,9 +16,9 @@ class Snake:
         self.direction = 'down'
 
         # starting the snake game with the snake having 20 blocks for length
-        self.length = 6 #20
-        self.x = [40, 40, 40, 40, 40, 40] #, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40]
-        self.y = [40, 40, 40, 40, 40, 40] #, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40]
+        self.length = 20
+        self.x = [40]*self.length #[40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40]
+        self.y = [40]*self.length #[40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40]
 
     def move_left(self):
         self.direction = 'left'
