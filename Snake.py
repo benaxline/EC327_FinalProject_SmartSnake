@@ -17,8 +17,8 @@ class Snake:
 
         # starting the snake game with the snake having 20 blocks for length
         self.length = 20
-        self.x = [40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40]
-        self.y = [40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40]
+        self.x = [40]*self.length #[40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40]
+        self.y = [40]*self.length #[40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40]
 
     def move_left(self):
         self.direction = 'left'
@@ -66,3 +66,11 @@ class Snake:
         self.length -= 1
         self.x.append(-1)
         self.y.append(-1)
+
+    # def is_snakelength_zero(self):
+    #     if self.length <= 1:
+    #         return True
+    #     else:
+    #         return False
+
+    
