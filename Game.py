@@ -29,6 +29,13 @@ class Game:
         self.pause = False
         self.running = False
         self.mode = ''
+        self.expression = ""
+        self.math_answer = 0
+        self.num1 = 0
+        self.num2 = 0
+        self.op = ''
+        
+
 
     def reset(self):
         self.snake = Snake(self.surface)
@@ -48,7 +55,28 @@ class Game:
         else:
             return False
 
-    
+
+    def displayMathProblem(self):
+        # num1 = self.math.generate_num1()
+        # num2 = self.math.generate_num2
+        # op = self.math.generate_operator()
+        self.surface.fill(BACKGROUND_COLOR)  # setting background color of the main window
+        font = pygame.font.SysFont('arial', 30)
+        line1 = font.render("Your question...", True, (255, 255, 255))
+        self.surface.blit(line1, (200, 300))
+        line2 = font.render(f"{self.math_exp()} = " , True, (255, 255, 255))
+        self.surface.blit(line2, (200, 350))
+        line3 = font.render(f"1.) {random.randrange(1,100)}     2.) {random.randrange(1,100)}", True, (255, 255, 255))
+        self.surface.blit(line3, (200, 400))
+        line4 = font.render(f"3.) {self.math_answer}     4.) {random.randrange(1,100)}", True, (255, 255, 255))
+        self.surface.blit(line4, (200, 450))
+        pygame.display.flip()
+
+        
+
+    def question(self):
+        if self.mode == 'm':
+            self.displayMathProblem()
 
     def play(self):
         
@@ -59,8 +87,8 @@ class Game:
 
         # snake eating apple scenario 
         if self.is_collision(self.snake.x[0], self.snake.y[0], self.apple.x, self.apple.y):
-            #self.pause = True
-
+            self.pause = True
+            self.question()
             self.snake.decrease_length() #decreases length
             self.apple.move() #apple moves
 
@@ -158,15 +186,36 @@ class Game:
 
         self.pause = False
 
+    def math_exp(self):
+        num1 = random.randint(1,100)
+        num2 = random.randint(1,100)
+        num = random.randint(1,4)
+        if num == 1:
+            operator = '+'
+            self.math_answer = num1 + num2
+        elif num == 2:
+            operator = '-'
+            self.math_answer = num1 - num2
+        elif num == 3:
+            operator = '*'
+            self.math_answer = num1 * num2
+        elif num == 4:
+            operator = '/'
+            self.math_answer = num1/num2
+        expression = str(num1) + " " + operator + " " + str(num2)
+        return expression
+
+    def answer_choice(self):
+        return random.randrange(1,100)
 
     def run(self):
+        
         self.menu()
-
         self.running = True
         self.pause = True
-        # self.menu()
         while self.running:
             for event in pygame.event.get():
+                
                 if event.type == KEYDOWN:
                     if event.key == K_ESCAPE:
                         self.running = False
@@ -194,6 +243,12 @@ class Game:
 
                         if event.key == K_DOWN:
                             self.snake.move_down()
+
+                    if self.mode == 'm':
+                        num1 = self.math.generate_num1
+                        num2 = self.math.generate_num2
+                        op = self.math.generate_operator
+                        self.expression = str(num1) + " " + str(op) + " " + str(num2)
 
                 elif event.type == QUIT:
                     self.running = False
