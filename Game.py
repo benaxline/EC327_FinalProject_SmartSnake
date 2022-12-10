@@ -22,6 +22,7 @@ class Game:
         self.snake.draw()
         self.apple = Apple(self.surface)
         self.apple.draw()
+        self.snake_zero = False
 
     def reset(self):
         self.snake = Snake(self.surface)
@@ -42,13 +43,15 @@ class Game:
         # snake eating apple scenario
         if self.is_collision(self.snake.x[0], self.snake.y[0], self.apple.x, self.apple.y):
 
-            self.snake.decrease_length()
-            self.apple.move()
+            self.snake.decrease_length() #decreases length
+            self.apple.move() #apple moves
 
         # snake colliding with itself
         for i in range(2, self.snake.length):
             if self.is_collision(self.snake.x[0], self.snake.y[0], self.snake.x[i], self.snake.y[i]):
                 raise "Collision Occured"
+        if self.snake.length == 0:
+            raise "Zero Length"
 
     def display_score(self):
         font = pygame.font.SysFont('arial', 30)
@@ -64,6 +67,39 @@ class Game:
         self.surface.blit(line2, (200, 350))
 
         pygame.display.flip()
+
+    def show_game_won(self):
+        self.surface.fill(BACKGROUND_COLOR)  # setting background color of the main window
+        font = pygame.font.SysFont('arial', 30)
+        line1 = font.render(f"You Won! Your score is {self.snake.length}", True, (255, 255, 255))
+        self.surface.blit(line1, (200, 300))
+        line2 = font.render("To play again press Enter. To exit press Escape!", True, (255, 255, 255))
+        self.surface.blit(line2, (200, 350))
+
+        pygame.display.flip()
+
+    def end_of_game(self):
+        if self.snake.length == 0:
+            self.show_game_won()
+            #self.show_game_over()
+        else:
+            self.show_game_over()
+            #self.show_game_won()
+        # self.pause = True
+        # self.reset()
+
+
+    def is_snakelength_zero(self):
+        if self.snake.length == 0:
+            self.snake_zero = True
+        else:
+            self.snake_zero = False
+
+
+        # if self.snake.length != 0:
+        #     return False
+        # else:
+        #     return True
 
     def run(self):
         running = True
@@ -94,13 +130,19 @@ class Game:
                 elif event.type == QUIT:
                     running = False
             try:
+                
+               
 
                 if not pause:
                     self.play()
 
             except Exception as e:
-                self.show_game_over()
+                #keep in this order - else it won't show the right end score!!!!
+                if self.snake.length == 0:
+                    self.snake_zero = True
+                self.end_of_game()
                 pause = True
                 self.reset()
+                
 
-            time.sleep(.15)
+            time.sleep(0.15)
