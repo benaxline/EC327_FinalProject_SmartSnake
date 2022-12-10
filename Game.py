@@ -2,6 +2,7 @@ import pygame
 from pygame.locals import *
 import time
 import random
+import sys
 #from pygamepopup.menu_manager import MenuManager
 
 from Apple import *
@@ -66,11 +67,62 @@ class Game:
         self.surface.blit(line1, (200, 300))
         line2 = font.render(f"{self.math_exp()} = " , True, (255, 255, 255))
         self.surface.blit(line2, (200, 350))
-        line3 = font.render(f"1.) {random.randrange(1,100)}     2.) {random.randrange(1,100)}", True, (255, 255, 255))
-        self.surface.blit(line3, (200, 400))
-        line4 = font.render(f"3.) {self.math_answer}     4.) {random.randrange(1,100)}", True, (255, 255, 255))
-        self.surface.blit(line4, (200, 450))
+        # line3 = font.render(f"1.) {random.randrange(1,100)}     2.) {random.randrange(1,100)}", True, (255, 255, 255))
+        # self.surface.blit(line3, (200, 400))
+        # line4 = font.render(f"3.) {self.math_answer}     4.) {random.randrange(1,100)}", True, (255, 255, 255))
+        # self.surface.blit(line4, (200, 450))
+       
+
+        #pygame.draw.rect(200, 400, 50, 100)
+        character = ""
+        esc = True
+        while esc:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+                if event.type == KEYDOWN:
+                    if event.key == K_0:
+                        character += "0"
+                    elif event.key == K_1:
+                        character += "1"
+                    elif event.key == K_2:
+                        character += "2"
+                    elif event.key == K_3:
+                        character += "3"
+                    elif event.key == K_4:
+                        character += "4"
+                    elif event.key == K_5:
+                        character += "5"
+                    elif event.key == K_6:
+                        charcater += "6"
+                    elif event.key == K_7:
+                        character += "7"
+                    elif event.key == K_8:
+                        character += "8"
+                    elif event.key == K_9:
+                        charcater += "9"
+                    if event.type == K_RETURN:
+                        esc = False
+                        
+
+                line = font.render(f"{character}" , True, (255, 255, 255))
+                self.surface.blit(line, (300, 450))
+                pygame.display.flip()
+
+
+                if character == self.math_answer:
+                    self.snake.decrease_length()
+                else:
+                    self.snake.increase_length()
+
+            self.pause = False
+
+
         pygame.display.flip()
+
+
+                    
 
         
 
@@ -89,7 +141,7 @@ class Game:
         if self.is_collision(self.snake.x[0], self.snake.y[0], self.apple.x, self.apple.y):
             self.pause = True
             self.question()
-            self.snake.decrease_length() #decreases length
+            #self.snake.decrease_length() #decreases length
             self.apple.move() #apple moves
 
         # snake colliding with itself (LOSE)
@@ -220,8 +272,8 @@ class Game:
                     if event.key == K_ESCAPE:
                         self.running = False
 
-                    if event.key == K_RETURN:
-                        self.pause = False
+                    # if event.key == K_RETURN:
+                    #     self.pause = False
 
                     if event.key == K_m:
                         self.mode = 'm'
@@ -267,3 +319,6 @@ class Game:
                 
 
             time.sleep(0.15)
+
+
+    
