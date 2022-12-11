@@ -179,15 +179,19 @@ class Game:
         #display answers
         line5 = font.render("ANSWERS:", True, (255, 255, 255))
         self.surface.blit(line5, (200,500))
-
-        line6 = font.render(f"1 - {str(self.trivia.data[self.current+1])}", True, (255, 255, 255))
+        self.current += 1
+        line6 = font.render(f"1 - {str(self.trivia.data[self.current])}", True, (255, 255, 255))
         self.surface.blit(line6, (200,550))
-        line7 = font.render(f"2 - {str(self.trivia.data[self.current+2])}", True, (255, 255, 255))
+        self.current += 1
+        line7 = font.render(f"2 - {str(self.trivia.data[self.current])}", True, (255, 255, 255))
         self.surface.blit(line7, (200,600))
-        line8 = font.render(f"3 - {str(self.trivia.data[self.current+3])}", True, (255, 255, 255))
+        self.current += 1
+        line8 = font.render(f"3 - {str(self.trivia.data[self.current])}", True, (255, 255, 255))
         self.surface.blit(line8, (200,650))
-        line9 = font.render(f"4 - {str(self.trivia.data[self.current+4])}", True, (255, 255, 255))
+        self.current += 1
+        line9 = font.render(f"4 - {str(self.trivia.data[self.current])}", True, (255, 255, 255))
         self.surface.blit(line9, (200,700))
+        self.current += 1
         pygame.display.flip()
         # print_text(font1, 5, 170, "ANSWERS")
         # print_text(font2, 20, 210, "1 - " + self.trivia.data[self.current+1], self.colors[0])
@@ -245,6 +249,8 @@ class Game:
             self.snake.decrease_length()
         else:
             self.snake.increase_length()
+        
+        self.current += 1 
 
         pygame.display.flip()
 
