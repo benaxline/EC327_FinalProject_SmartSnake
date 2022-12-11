@@ -13,7 +13,12 @@ from Math import *
 SIZE = 40
 BACKGROUND_COLOR = (110, 110, 5)
 
-
+white = 255,255,255
+cyan = 0,255,255
+yellow = 255,255,0
+purple = 255,0,255
+green = 0,255,0
+red = 255,0,0
 
 class Game:
     def __init__(self):
@@ -35,6 +40,9 @@ class Game:
         self.num1 = 0
         self.num2 = 0
         self.op = ''
+        self.current = 0
+        self.scored = False
+        self.failed = False
         
 
 
@@ -130,13 +138,75 @@ class Game:
         pygame.display.flip()
 
 
-                    
+    def displayTriviaProblem(self):
+        self.surface.fill(BACKGROUND_COLOR)  # setting background color of the main window
+        font = pygame.font.SysFont('arial', 30)
 
+        line1 = font.render("TRIVIA GAME", True, (255, 255, 255))
+        self.surface.blit(line1, (200, 300))
+        line2 = font.render("Press Keys (1-4) To Answer", True, (255, 255, 255))
+        self.surface.blit(line2, (200, 350))
+
+        #get correct answer out of data (first)
+        self.correct = int(self.data[self.current+5])
+
+        #display question
+        question = self.current // 6 + 1
+        line3 = font.render("QUESTION " + str(question), True, (255, 255, 255))
+        self.surface.blit(line3, (200, 400))
+        line4 = font.render(self.data[self.current], True, (255, 255, 255))
+        self.surface.blit(line4, (200,450))
+
+        #respond to correct answer
+        # if self.scored:
+        #     self.colors = [white,white,white,white]
+        #     self.colors[self.correct-1] = green
+        #     line
+        #     print_text(font1, 230, 380, "CORRECT!", green)
+        #     print_text(font2, 170, 420, "Press Enter For Next Question", green)
+        #     sys.exit()
         
+        # elif self.failed:
+        #     self.colors = [white,white,white,white]
+        #     self.colors[self.wronganswer-1] = red
+        #     self.colors[self.correct-1] = green
+        #     print_text(font1, 220, 380, "INCORRECT!", red)
+        #     print_text(font2, 170, 420, "Press Enter For Next Question", red)
 
+        # #display answers
+        # print_text(font1, 5, 170, "ANSWERS")
+        # print_text(font2, 20, 210, "1 - " + self.data[self.current+1], self.colors[0])
+        # print_text(font2, 20, 240, "2 - " + self.data[self.current+2], self.colors[1])
+        # print_text(font2, 20, 270, "3 - " + self.data[self.current+3], self.colors[2])
+        # print_text(font2, 20, 300, "4 - " + self.data[self.current+4], self.colors[3])
+        
+        
+        # self.surface.fill(BACKGROUND_COLOR)  # setting background color of the main window
+        # font = pygame.font.SysFont('arial', 30)
+        # line1 = font.render("Trivia Game", True, (255, 255, 255))
+        # self.surface.blit(line1, (200, 300))
+        # line2 = font.render("Press Keys (1-4) To Answer" , True, (255, 255, 255))
+        # self.surface.blit(line2, (200, 350))
+       # line3 = font.render()
+
+
+
+  
+    def handle_input(self,number):
+        if not self.scored and not self.failed:
+            if number == self.correct:
+                self.scored = True
+                self.score += 1
+            else:
+                self.failed = True
+                self.wronganswer = number
+    
     def question(self):
         if self.mode == 'm':
             self.displayMathProblem()
+        elif self.mode == 't':
+            self.displayTriviaProblem()
+
 
     def play(self):
         
@@ -280,8 +350,8 @@ class Game:
                     if event.key == K_ESCAPE:
                         self.running = False
 
-                    # if event.key == K_RETURN:
-                    #     self.pause = False
+                    if event.key == K_RETURN:
+                        self.pause = False
 
                     if event.key == K_m:
                         self.mode = 'm'
@@ -309,6 +379,8 @@ class Game:
                         num2 = self.math.generate_num2
                         op = self.math.generate_operator
                         self.expression = str(num1) + " " + str(op) + " " + str(num2)
+                    if self.mode == 't':
+                        print("hello")
 
                 elif event.type == QUIT:
                     self.running = False
@@ -328,5 +400,10 @@ class Game:
 
             time.sleep(0.15)
 
-
+    def print_text(font, x, y, text, color=(255,255,255), shadow=True):
+        if shadow:
+            imgText = font.render(text, True, (0,0,0))
+            screen.blit(imgText, (x-2,y-2))
+        imgText = font.render(text, True, color)
+        screen.blit(imgText, (x,y))
     
