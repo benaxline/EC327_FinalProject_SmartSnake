@@ -201,7 +201,36 @@ class Game:
         # self.surface.blit(line1, (200, 300))
         # line2 = font.render("Press Keys (1-4) To Answer" , True, (255, 255, 255))
         # self.surface.blit(line2, (200, 350))
-       # line3 = font.render()
+        # line3 = font.render()
+        
+        esc = True
+        while esc:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+                if event.type == KEYDOWN:
+                    
+                    if event.key == K_1:
+                        result = 1
+                        esc = False
+                    elif event.key == K_2:
+                        result = 2
+                        esc = False
+                    elif event.key == K_3:
+                        result = 3
+                        esc = False
+                    elif event.key == K_4:
+                        result = 4
+                        esc = False
+
+               
+
+
+                #self.handle_input(result)
+                  
+
+
 
         pygame.display.flip()
 
@@ -213,6 +242,7 @@ class Game:
             if number == self.correct:
                 self.scored = True
                 self.score += 1
+                
             else:
                 self.failed = True
                 self.wronganswer = number
