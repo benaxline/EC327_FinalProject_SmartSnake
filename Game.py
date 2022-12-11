@@ -95,14 +95,20 @@ class Game:
                     elif event.key == K_5:
                         character += "5"
                     elif event.key == K_6:
-                        charcater += "6"
+                        character += "6"
                     elif event.key == K_7:
                         character += "7"
                     elif event.key == K_8:
                         character += "8"
                     elif event.key == K_9:
-                        charcater += "9"
-                    if event.type == K_RETURN:
+                        character += "9"
+                    elif event.key == K_DELETE:
+                        character = character[:-1]
+                    elif event.key == K_PERIOD:
+                        character += "."
+                    elif event.key == K_MINUS:
+                        character += "-"
+                    if event.key == K_RETURN:
                         esc = False
                         
 
@@ -110,14 +116,16 @@ class Game:
                 self.surface.blit(line, (300, 450))
                 pygame.display.flip()
 
-
-                if character == self.math_answer:
-                    self.snake.decrease_length()
-                else:
-                    self.snake.increase_length()
+                ans = str(self.math_answer)
+                print(ans)
+                print(character)
 
             self.pause = False
 
+        if character == ans:
+            self.snake.decrease_length()
+        else:
+            self.snake.increase_length()
 
         pygame.display.flip()
 
