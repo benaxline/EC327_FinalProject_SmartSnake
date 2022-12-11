@@ -196,19 +196,21 @@ class Game:
         font = pygame.font.SysFont('arial', 30)
 
         line1 = font.render("TRIVIA GAME", True, (255, 255, 255))
-        self.surface.blit(line1, (200, 300))
+        self.surface.blit(line1, (150, 250))
         line2 = font.render("Press Keys (1-4) To Answer", True, (255, 255, 255))
-        self.surface.blit(line2, (200, 350))
+        self.surface.blit(line2, (150, 300))
+        line3 = font.render(" ", True, (255, 255, 255))
+        self.surface.blit(line3, (150, 350))
 
         # #get correct answer out of data (first)
         self.correct = int(self.trivia.data[self.current+5])
 
         #display question
         question = self.current // 6 + 1
-        line3 = font.render(f"QUESTION: {question}", True, (255, 255, 255))
-        self.surface.blit(line3, (200, 400))
-        line4 = font.render(f"{self.trivia.data[self.current]}", True, (255, 255, 255))
-        self.surface.blit(line4, (200,450))
+        line4 = font.render(f"QUESTION: {question}", True, (255, 255, 255))
+        self.surface.blit(line4, (75, 400))
+        line5 = font.render(f"{self.trivia.data[self.current]}", True, (255, 255, 255))
+        self.surface.blit(line5, (75,450))
 
         #respond to correct answer
         # if self.scored:
@@ -226,20 +228,20 @@ class Game:
         #     print_text(font2, 170, 420, "Press Enter For Next Question", red)
 
         #display answers
-        line5 = font.render("ANSWERS:", True, (255, 255, 255))
-        self.surface.blit(line5, (200,500))
+        line6 = font.render("ANSWERS:", True, (255, 255, 255))
+        self.surface.blit(line6, (75,500))
         self.current += 1
-        line6 = font.render(f"1 - {str(self.trivia.data[self.current])}", True, (255, 255, 255))
-        self.surface.blit(line6, (200,550))
+        line7 = font.render(f"1 - {str(self.trivia.data[self.current])}", True, (255, 255, 255))
+        self.surface.blit(line7, (75,550))
         self.current += 1
-        line7 = font.render(f"2 - {str(self.trivia.data[self.current])}", True, (255, 255, 255))
-        self.surface.blit(line7, (200,600))
+        line8 = font.render(f"2 - {str(self.trivia.data[self.current])}", True, (255, 255, 255))
+        self.surface.blit(line8, (75,600))
         self.current += 1
-        line8 = font.render(f"3 - {str(self.trivia.data[self.current])}", True, (255, 255, 255))
-        self.surface.blit(line8, (200,650))
+        line9 = font.render(f"3 - {str(self.trivia.data[self.current])}", True, (255, 255, 255))
+        self.surface.blit(line9, (75,650))
         self.current += 1
-        line9 = font.render(f"4 - {str(self.trivia.data[self.current])}", True, (255, 255, 255))
-        self.surface.blit(line9, (200,700))
+        line10 = font.render(f"4 - {str(self.trivia.data[self.current])}", True, (255, 255, 255))
+        self.surface.blit(line10, (75,700))
         self.current += 1
         pygame.display.flip()
         # print_text(font1, 5, 170, "ANSWERS")
@@ -402,7 +404,7 @@ class Game:
             raise "Zero Length"
 
         # snake off grid (LOSE)
-        for i in range(2, self.snake.length):
+        for i in range(0, self.snake.length):
             if self.is_off_grid(self.snake.x[0], self.snake.y[0]):
                 self.off_grid = True
                 raise "Off Grid"
@@ -525,6 +527,7 @@ class Game:
 
                     if event.key == K_RETURN:
                         self.pause = False
+                        self.count = 0
 
                     if event.key == K_m:
                         self.mode = 'm'
