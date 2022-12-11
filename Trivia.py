@@ -35,9 +35,6 @@ class Trivia(object):
         for text_line in trivia_data:
             self.data.append(text_line.strip())
             self.total += 1
-
-    def show_type(self):
-        print_text(font2, 200, 20, "THIS GAME SUCKS")
     
     def show_question(self):
         print_text(font1, 10, 5, "TRIVIA GAME")
