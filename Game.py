@@ -9,6 +9,7 @@ from Apple import *
 from Game import *
 from Snake import *
 from Math import *
+from Trivia import *
 
 SIZE = 40
 BACKGROUND_COLOR = (110, 110, 5)
@@ -43,6 +44,7 @@ class Game:
         self.current = 0
         self.scored = False
         self.failed = False
+        self.trivia = Trivia("trivia_data.txt")
         
 
 
@@ -139,6 +141,7 @@ class Game:
 
 
     def displayTriviaProblem(self):
+        
         self.surface.fill(BACKGROUND_COLOR)  # setting background color of the main window
         font = pygame.font.SysFont('arial', 30)
 
@@ -147,15 +150,15 @@ class Game:
         line2 = font.render("Press Keys (1-4) To Answer", True, (255, 255, 255))
         self.surface.blit(line2, (200, 350))
 
-        #get correct answer out of data (first)
-        self.correct = int(self.data[self.current+5])
+        # #get correct answer out of data (first)
+        # self.correct = int(self.data[self.current+5])
 
-        #display question
-        question = self.current // 6 + 1
-        line3 = font.render("QUESTION " + str(question), True, (255, 255, 255))
-        self.surface.blit(line3, (200, 400))
-        line4 = font.render(self.data[self.current], True, (255, 255, 255))
-        self.surface.blit(line4, (200,450))
+        # #display question
+        # question = self.current // 6 + 1
+        # line3 = font.render(f"QUESTION: {str(question)}", True, (255, 255, 255))
+        # self.surface.blit(line3, (200, 400))
+        # line4 = font.render(f"{self.trivia.data[self.current]}", True, (255, 255, 255))
+        # self.surface.blit(line4, (200,450))
 
         #respond to correct answer
         # if self.scored:
@@ -188,6 +191,8 @@ class Game:
         # line2 = font.render("Press Keys (1-4) To Answer" , True, (255, 255, 255))
         # self.surface.blit(line2, (200, 350))
        # line3 = font.render()
+
+        pygame.display.flip()
 
 
 
