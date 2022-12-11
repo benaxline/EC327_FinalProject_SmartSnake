@@ -150,24 +150,23 @@ class Game:
         line2 = font.render("Press Keys (1-4) To Answer", True, (255, 255, 255))
         self.surface.blit(line2, (200, 350))
 
-        # #get correct answer out of data (first)
-        # self.correct = int(self.data[self.current+5])
+        #get correct answer out of data (first)
+        self.correct = int(self.trivia.data[self.current+5])
 
-        # #display question
-        # question = self.current // 6 + 1
-        # line3 = font.render(f"QUESTION: {str(question)}", True, (255, 255, 255))
-        # self.surface.blit(line3, (200, 400))
-        # line4 = font.render(f"{self.trivia.data[self.current]}", True, (255, 255, 255))
-        # self.surface.blit(line4, (200,450))
+        #display question
+        question = self.current // 6 + 1
+        line3 = font.render(f"QUESTION: {str(question)}", True, (255, 255, 255))
+        self.surface.blit(line3, (200, 400))
+        line4 = font.render(f"{self.trivia.data[self.current]}", True, (255, 255, 255))
+        self.surface.blit(line4, (200,450))
 
         #respond to correct answer
-        # if self.scored:
-        #     self.colors = [white,white,white,white]
-        #     self.colors[self.correct-1] = green
-        #     line
-        #     print_text(font1, 230, 380, "CORRECT!", green)
-        #     print_text(font2, 170, 420, "Press Enter For Next Question", green)
-        #     sys.exit()
+        if self.scored:
+           self.colors = [white,white,white,white]
+           self.colors[self.correct-1] = green
+           print_text(font1, 230, 380, "CORRECT!", green)
+           print_text(font2, 170, 420, "Press Enter For Next Question", green)
+           sys.exit()
         
         # elif self.failed:
         #     self.colors = [white,white,white,white]
@@ -176,12 +175,24 @@ class Game:
         #     print_text(font1, 220, 380, "INCORRECT!", red)
         #     print_text(font2, 170, 420, "Press Enter For Next Question", red)
 
-        # #display answers
+        #display answers
+        line5 = font.render("ANSWERS:", True, (255, 255, 255))
+        self.surface.blit(line5, (200,500))
+
+        line6 = font.render(f"1 - {str(self.trivia.data[self.current+1])}", True, (255, 255, 255))
+        self.surface.blit(line6, (200,550))
+        line7 = font.render(f"2 - {str(self.trivia.data[self.current+2])}", True, (255, 255, 255))
+        self.surface.blit(line7, (200,600))
+        line8 = font.render(f"3 - {str(self.trivia.data[self.current+3])}", True, (255, 255, 255))
+        self.surface.blit(line8, (200,650))
+        line9 = font.render(f"4 - {str(self.trivia.data[self.current+4])}", True, (255, 255, 255))
+        self.surface.blit(line9, (200,700))
+
         # print_text(font1, 5, 170, "ANSWERS")
-        # print_text(font2, 20, 210, "1 - " + self.data[self.current+1], self.colors[0])
-        # print_text(font2, 20, 240, "2 - " + self.data[self.current+2], self.colors[1])
-        # print_text(font2, 20, 270, "3 - " + self.data[self.current+3], self.colors[2])
-        # print_text(font2, 20, 300, "4 - " + self.data[self.current+4], self.colors[3])
+        # print_text(font2, 20, 210, "1 - " + self.trivia.data[self.current+1], self.colors[0])
+        # print_text(font2, 20, 240, "2 - " + self.trivia.data[self.current+2], self.colors[1])
+        # print_text(font2, 20, 270, "3 - " + self.trivia.data[self.current+3], self.colors[2])
+        # print_text(font2, 20, 300, "4 - " + self.trivia.data[self.current+4], self.colors[3])
         
         
         # self.surface.fill(BACKGROUND_COLOR)  # setting background color of the main window
