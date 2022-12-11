@@ -46,6 +46,7 @@ class Game:
         self.failed = False
         self.trivia = Trivia("trivia_data.txt")
         self.result = 0
+        self.count = 0
 
 
     def reset(self):
@@ -134,8 +135,56 @@ class Game:
             self.pause = False
 
         if character == ans:
+            #output result
+            self.surface.fill(BACKGROUND_COLOR)  # setting background color of the main window
+            font = pygame.font.SysFont('arial', 30)
+
+            line1 = font.render("CORRECT", True, (255, 255, 255))
+            self.surface.blit(line1, (300, 300))
+            line2 = font.render("Press Enter to move on.", True, (255, 255, 255))
+            self.surface.blit(line2, (200, 350))
+            pygame.display.flip()
+
+            #press button
+            esc = True
+            while esc:
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        pygame.quit()
+                        sys.exit()
+                    if event.type == KEYDOWN:
+                        if event.key == K_RETURN:
+                            
+                            esc = False
+                            break
+
+            #decrease length of snake
             self.snake.decrease_length()
         else:
+            #output result
+            self.surface.fill(BACKGROUND_COLOR)  # setting background color of the main window
+            font = pygame.font.SysFont('arial', 30)
+
+            line1 = font.render("INCORRECT", True, (255, 255, 255))
+            self.surface.blit(line1, (300, 300))
+            line2 = font.render("Press Enter to move on.", True, (255, 255, 255))
+            self.surface.blit(line2, (200, 350))
+            pygame.display.flip()
+
+            #press button
+            esc = True
+            while esc:
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        pygame.quit()
+                        sys.exit()
+                    if event.type == KEYDOWN:
+                        if event.key == K_RETURN:
+                            
+                            esc = False
+                            break
+
+            #increase length of snake
             self.snake.increase_length()
 
         pygame.display.flip()
@@ -324,6 +373,9 @@ class Game:
             self.displayMathProblem()
         elif self.mode == 't':
             self.displayTriviaProblem()
+        elif self.mode == 'n':
+            self.snake.increase_length()
+            self.pause = False
 
 
     def play(self):
@@ -428,9 +480,12 @@ class Game:
         self.surface.blit(line2, (200, 350))
         line3 = font.render("Press T key for trivia mode", True, (255, 255, 255))
         self.surface.blit(line3, (200, 400))
-        line4 = font.render("Press Escape to quit.", True, (255, 255, 255))
+        line4 = font.render("Press N key for normal mode", True, (255, 255, 255))
         self.surface.blit(line4, (200, 450))
+        line4 = font.render("Press Escape to quit.", True, (255, 255, 255))
+        self.surface.blit(line4, (200, 500))
         pygame.display.flip()
+
 
         self.pause = False
 
@@ -479,6 +534,10 @@ class Game:
                         self.mode = 't'
                         self.pause = False
 
+                    if event.key == K_n:
+                        self.mode = 'n'
+                        self.pause = False
+
                     if not self.pause:
                         if event.key == K_LEFT:
                             self.snake.move_left()
@@ -500,6 +559,10 @@ class Game:
                     if self.mode == 't':
                         #print("hello")
                         pass
+                    if self.mode == 'n' and self.count == 0:
+                        self.snake.length = 1
+                        self.count += 1
+                        #pass
 
                 elif event.type == QUIT:
                     self.running = False
