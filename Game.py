@@ -45,7 +45,7 @@ class Game:
         self.scored = False
         self.failed = False
         self.trivia = Trivia("trivia_data.txt")
-        
+        self.result = 0
 
 
     def reset(self):
@@ -73,6 +73,7 @@ class Game:
         # op = self.math.generate_operator()
         self.surface.fill(BACKGROUND_COLOR)  # setting background color of the main window
         font = pygame.font.SysFont('arial', 30)
+
         line1 = font.render("Your question...", True, (255, 255, 255))
         self.surface.blit(line1, (200, 300))
         line2 = font.render(f"{self.math_exp()} = " , True, (255, 255, 255))
@@ -81,7 +82,7 @@ class Game:
         # self.surface.blit(line3, (200, 400))
         # line4 = font.render(f"3.) {self.math_answer}     4.) {random.randrange(1,100)}", True, (255, 255, 255))
         # self.surface.blit(line4, (200, 450))
-       
+        pygame.display.flip()
 
         #pygame.draw.rect(200, 400, 50, 100)
         character = ""
@@ -150,23 +151,23 @@ class Game:
         line2 = font.render("Press Keys (1-4) To Answer", True, (255, 255, 255))
         self.surface.blit(line2, (200, 350))
 
-        #get correct answer out of data (first)
+        # #get correct answer out of data (first)
         self.correct = int(self.trivia.data[self.current+5])
 
         #display question
         question = self.current // 6 + 1
-        line3 = font.render(f"QUESTION: {str(question)}", True, (255, 255, 255))
+        line3 = font.render(f"QUESTION: {question}", True, (255, 255, 255))
         self.surface.blit(line3, (200, 400))
         line4 = font.render(f"{self.trivia.data[self.current]}", True, (255, 255, 255))
         self.surface.blit(line4, (200,450))
 
         #respond to correct answer
-        if self.scored:
-           self.colors = [white,white,white,white]
-           self.colors[self.correct-1] = green
-           print_text(font1, 230, 380, "CORRECT!", green)
-           print_text(font2, 170, 420, "Press Enter For Next Question", green)
-           sys.exit()
+        # if self.scored:
+        #    self.colors = [white,white,white,white]
+        #    self.colors[self.correct-1] = green
+        #    print_text(font1, 230, 380, "CORRECT!", green)
+        #    print_text(font2, 170, 420, "Press Enter For Next Question", green)
+        #    sys.exit()
         
         # elif self.failed:
         #     self.colors = [white,white,white,white]
@@ -187,7 +188,7 @@ class Game:
         self.surface.blit(line8, (200,650))
         line9 = font.render(f"4 - {str(self.trivia.data[self.current+4])}", True, (255, 255, 255))
         self.surface.blit(line9, (200,700))
-
+        pygame.display.flip()
         # print_text(font1, 5, 170, "ANSWERS")
         # print_text(font2, 20, 210, "1 - " + self.trivia.data[self.current+1], self.colors[0])
         # print_text(font2, 20, 240, "2 - " + self.trivia.data[self.current+2], self.colors[1])
@@ -201,7 +202,8 @@ class Game:
         # self.surface.blit(line1, (200, 300))
         # line2 = font.render("Press Keys (1-4) To Answer" , True, (255, 255, 255))
         # self.surface.blit(line2, (200, 350))
-        # line3 = font.render()
+        #line3 = font.render()
+
         
         esc = True
         while esc:
@@ -210,27 +212,39 @@ class Game:
                     pygame.quit()
                     sys.exit()
                 if event.type == KEYDOWN:
-                    
                     if event.key == K_1:
-                        result = 1
+                        self.result = 1
                         esc = False
+                        break
                     elif event.key == K_2:
-                        result = 2
+                        self.result = 2
                         esc = False
+                        break
                     elif event.key == K_3:
-                        result = 3
+                        self.result = 3
                         esc = False
+                        break
                     elif event.key == K_4:
-                        result = 4
+                        self.result = 4
                         esc = False
+                        break
+                    if event.key == K_RETURN:
+                        break
 
                
 
 
-                #self.handle_input(result)
+                # self.handle_input(self.result)
+                # print(self.result)
+
                   
 
+            self.pause = False
 
+        if self.result == self.correct:
+            self.snake.decrease_length()
+        else:
+            self.snake.increase_length()
 
         pygame.display.flip()
 
@@ -241,11 +255,13 @@ class Game:
         if not self.scored and not self.failed:
             if number == self.correct:
                 self.scored = True
-                self.score += 1
+                #self.snake.length += 1
+                self.snake.decrease_length()
                 
             else:
                 self.failed = True
                 self.wronganswer = number
+                self.snake.increase_length()
     
     def question(self):
         if self.mode == 'm':
@@ -426,7 +442,8 @@ class Game:
                         op = self.math.generate_operator
                         self.expression = str(num1) + " " + str(op) + " " + str(num2)
                     if self.mode == 't':
-                        print("hello")
+                        #print("hello")
+                        pass
 
                 elif event.type == QUIT:
                     self.running = False
