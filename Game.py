@@ -134,8 +134,56 @@ class Game:
             self.pause = False
 
         if character == ans:
+            #output result
+            self.surface.fill(BACKGROUND_COLOR)  # setting background color of the main window
+            font = pygame.font.SysFont('arial', 30)
+
+            line1 = font.render("CORRECT", True, (255, 255, 255))
+            self.surface.blit(line1, (300, 300))
+            line2 = font.render("Press Enter to move on.", True, (255, 255, 255))
+            self.surface.blit(line2, (200, 350))
+            pygame.display.flip()
+
+            #press button
+            esc = True
+            while esc:
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        pygame.quit()
+                        sys.exit()
+                    if event.type == KEYDOWN:
+                        if event.key == K_RETURN:
+                            
+                            esc = False
+                            break
+
+            #decrease length of snake
             self.snake.decrease_length()
         else:
+            #output result
+            self.surface.fill(BACKGROUND_COLOR)  # setting background color of the main window
+            font = pygame.font.SysFont('arial', 30)
+
+            line1 = font.render("INCORRECT", True, (255, 255, 255))
+            self.surface.blit(line1, (300, 300))
+            line2 = font.render("Press Enter to move on.", True, (255, 255, 255))
+            self.surface.blit(line2, (200, 350))
+            pygame.display.flip()
+
+            #press button
+            esc = True
+            while esc:
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        pygame.quit()
+                        sys.exit()
+                    if event.type == KEYDOWN:
+                        if event.key == K_RETURN:
+                            
+                            esc = False
+                            break
+                        
+            #increase length of snake
             self.snake.increase_length()
 
         pygame.display.flip()
