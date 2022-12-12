@@ -33,13 +33,13 @@ https://youtu.be/b1D-0l0GVpE
 
 In order to run the program, you need to make sure that your computer has the Python Programming Language installed:
 
-For Windows: 
+For Windows, follow:  
+https://www.python.org/downloads/windows/ 
 
-Follow: https://www.python.org/downloads/windows/ 
-
-For Mac:
-
-Follow: https://www.python.org/downloads/macos/
+For Mac, follow:
+https://www.python.org/downloads/macos/
 
 For Other Environment, check Python.org for more download information
+
+
 
