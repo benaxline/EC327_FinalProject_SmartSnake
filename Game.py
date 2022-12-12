@@ -129,8 +129,8 @@ class Game:
                 pygame.display.flip()
 
                 ans = str(self.math_answer)
-                print(ans)
-                print(character)
+                #print(ans)
+                #print(character)
 
             self.pause = False
 
