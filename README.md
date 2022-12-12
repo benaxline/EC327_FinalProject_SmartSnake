@@ -44,9 +44,16 @@ For Other Environment, check Python.org for more download information
 
 After you have the python installed on your machine, you then need to install pygame. 
 Pygame is a python module: 
+
 Follow https://www.pygame.org/wiki/GettingStarted to install pygame on your machine.
 
 Once everything is installed. You should now be able to run our program the Smart Snake!!!
 
 
 ## How to Start the Game:
+To start the game/program, open the terminal on your machine, and type:
+```
+python3 -m main
+```
+
+This should launch the game, and you should be able to play the game from there. 
