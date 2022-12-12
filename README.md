@@ -42,6 +42,7 @@ For Mac, follow: https://www.python.org/downloads/macos/
 
 For Other Environment, check Python.org for more download information
 
+
 After you have the python installed on your machine, you then need to install pygame. 
 Pygame is a python module: 
 
@@ -51,9 +52,12 @@ Once everything is installed. You should now be able to run our program the Smar
 
 
 ## How to Start the Game:
-To start the game/program, open the terminal on your machine, and type:
+To start the game/program, open the terminal on your machine.
+Make sure that your current directory is in *code*
+Once you are in the code folder, or the code directory, type: 
 ```
 python3 -m main
 ```
+in your terminal
 
 This should launch the game, and you should be able to play the game from there. 
