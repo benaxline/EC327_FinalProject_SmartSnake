@@ -33,6 +33,8 @@ https://youtu.be/b1D-0l0GVpE
 
 ## Setting up Project Environment:
 
+### Python:
+
 In order to run the program, you need to make sure that your computer has the Python Programming Language installed. 
 Usually, python comes pre-installed on your machine if you have a mac. However, if not, you can click on the following link to install python.
 
@@ -42,6 +44,7 @@ For Mac, follow: https://www.python.org/downloads/macos/
 
 For Other Environment, check Python.org for more download information 
 
+### Pygame:
 
 After you have the python installed on your machine, you then need to install pygame. 
 Pygame is a python module: 
