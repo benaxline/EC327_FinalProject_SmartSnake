@@ -11,7 +11,8 @@ Benjamin Axline(U19649803): baxline@bu.edu
 
 Project Start Date: Dec 3rd, 2022
 Project End Date: Dec 12th, 2022
-__See detailed project timeline, go to documents folder and see "EC327 Smark Snake Project Timeline"__ 
+
+*See detailed project timeline, go to documents folder and see "EC327 Smark Snake Project Timeline"*
 
 
 Overview:   
