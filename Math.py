@@ -16,15 +16,15 @@ class Math:
 
     def generate_operator(self):
         #determine which operator to use
-        num = random.randint(1,4)
+        num = random.randint(1,3)
         if num == 1:
             operator = '+'
         elif num == 2:
             operator = '-'
         elif num == 3:
             operator = '*'
-        elif num == 4:
-            operator = '/'
+        # elif num == 4:
+        #     operator = '/'
         return operator
 
     def generate_num1(self):
