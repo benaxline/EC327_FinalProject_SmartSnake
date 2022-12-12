@@ -64,4 +64,12 @@ This should launch the game, and you should be able to play the game from there.
 
 ## Other Information:
 In the documentation folder, you can find a lot of detailed information regarding our project:
-- 
+- EC327_Smart_Snake_ProjectTimeline.pdf: contains our project timeline 
+- EC327_Smart_Snake_ProjectDocumentation.pdf: contains our project overview and technical documentation
+- EC327 _Smart_Snake_StatementofWork.pdf: contains what each person worked on 
+- SmartSnake_ProjectArchitecture.pdf: contains our project architecture
+
+Folders:
+- Code: Contains all the necessary code to run the game
+- Documentation: Contains all the project documentation
+- Mics: Miscellaneous files, not important
