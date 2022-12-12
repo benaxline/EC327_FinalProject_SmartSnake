@@ -591,4 +591,3 @@ class Game:
             screen.blit(imgText, (x-2,y-2))
         imgText = font.render(text, True, color)
         screen.blit(imgText, (x,y))
-    
