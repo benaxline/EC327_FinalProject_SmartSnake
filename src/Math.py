@@ -23,8 +23,8 @@ class Math:
             operator = '-'
         elif num == 3:
             operator = '*'
-        elif num == 4:
-            operator = '/'
+        # elif num == 4:
+        #     operator = '/'
         return operator
 
     def generate_num1(self):
