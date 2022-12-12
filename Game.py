@@ -69,9 +69,6 @@ class Game:
 
 
     def displayMathProblem(self):
-        # num1 = self.math.generate_num1()
-        # num2 = self.math.generate_num2
-        # op = self.math.generate_operator()
         self.surface.fill(BACKGROUND_COLOR)  # setting background color of the main window
         font = pygame.font.SysFont('arial', 30)
 
@@ -79,13 +76,8 @@ class Game:
         self.surface.blit(line1, (200, 300))
         line2 = font.render(f"{self.math_exp()} = " , True, (255, 255, 255))
         self.surface.blit(line2, (200, 350))
-        # line3 = font.render(f"1.) {random.randrange(1,100)}     2.) {random.randrange(1,100)}", True, (255, 255, 255))
-        # self.surface.blit(line3, (200, 400))
-        # line4 = font.render(f"3.) {self.math_answer}     4.) {random.randrange(1,100)}", True, (255, 255, 255))
-        # self.surface.blit(line4, (200, 450))
         pygame.display.flip()
 
-        #pygame.draw.rect(200, 400, 50, 100)
         character = ""
         esc = True
         while esc:
@@ -129,8 +121,6 @@ class Game:
                 pygame.display.flip()
 
                 ans = str(self.math_answer)
-                print(ans)
-                print(character)
 
             self.pause = False
 
@@ -212,21 +202,6 @@ class Game:
         line5 = font.render(f"{self.trivia.data[self.current]}", True, (255, 255, 255))
         self.surface.blit(line5, (75,450))
 
-        #respond to correct answer
-        # if self.scored:
-        #    self.colors = [white,white,white,white]
-        #    self.colors[self.correct-1] = green
-        #    print_text(font1, 230, 380, "CORRECT!", green)
-        #    print_text(font2, 170, 420, "Press Enter For Next Question", green)
-        #    sys.exit()
-        
-        # elif self.failed:
-        #     self.colors = [white,white,white,white]
-        #     self.colors[self.wronganswer-1] = red
-        #     self.colors[self.correct-1] = green
-        #     print_text(font1, 220, 380, "INCORRECT!", red)
-        #     print_text(font2, 170, 420, "Press Enter For Next Question", red)
-
         #display answers
         line6 = font.render("ANSWERS:", True, (255, 255, 255))
         self.surface.blit(line6, (75,500))
@@ -244,20 +219,6 @@ class Game:
         self.surface.blit(line10, (75,700))
         self.current += 1
         pygame.display.flip()
-        # print_text(font1, 5, 170, "ANSWERS")
-        # print_text(font2, 20, 210, "1 - " + self.trivia.data[self.current+1], self.colors[0])
-        # print_text(font2, 20, 240, "2 - " + self.trivia.data[self.current+2], self.colors[1])
-        # print_text(font2, 20, 270, "3 - " + self.trivia.data[self.current+3], self.colors[2])
-        # print_text(font2, 20, 300, "4 - " + self.trivia.data[self.current+4], self.colors[3])
-        
-        
-        # self.surface.fill(BACKGROUND_COLOR)  # setting background color of the main window
-        # font = pygame.font.SysFont('arial', 30)
-        # line1 = font.render("Trivia Game", True, (255, 255, 255))
-        # self.surface.blit(line1, (200, 300))
-        # line2 = font.render("Press Keys (1-4) To Answer" , True, (255, 255, 255))
-        # self.surface.blit(line2, (200, 350))
-        #line3 = font.render()
 
         
         esc = True
@@ -286,15 +247,8 @@ class Game:
                     if event.key == K_RETURN:
                         break
 
-               
-
-
-                # self.handle_input(self.result)
-                # print(self.result)
 
                   
-
-            # self.pause = False
 
         if self.result == self.correct:
             #output result
@@ -453,11 +407,7 @@ class Game:
             
         else:
             self.show_game_over()
-            #self.show_game_won()
-        # self.pause = True
-        # self.reset()
 
-    
 
 
     def is_snakelength_zero(self):
@@ -466,11 +416,6 @@ class Game:
         else:
             self.snake_zero = False
 
-
-        # if self.snake.length != 0:
-        #     return False
-        # else:
-        #     return True
 
     def menu(self):
         #menu display
@@ -494,7 +439,7 @@ class Game:
     def math_exp(self):
         num1 = random.randint(1,100)
         num2 = random.randint(1,100)
-        num = random.randint(1,4)
+        num = random.randint(1,3)
         if num == 1:
             operator = '+'
             self.math_answer = num1 + num2
