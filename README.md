@@ -44,7 +44,7 @@ For Other Environment, check Python.org for more download information
 
 
 After you have the python installed on your machine, you then need to install pygame. 
-Pygame is a python module: 
+Pygame is a python module: <br />
 
 Follow https://www.pygame.org/wiki/GettingStarted to install pygame on your machine.
 
