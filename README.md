@@ -21,6 +21,8 @@ This "Smart Snake" Game is derived from the traditional style snake game. In the
 
 This project is utilizes Python's object-oriented programming. It also uses Pygame as the user interface. The program consists of five python classes: Apple, Game, Trivia, Math, and Snake. Each class handles their respective objects. The Apple class handles the creation of the apple the snake eats, the Game class handles the innerworkings of the game, the Snake class handles the attributes of the snake, the math and trivia classes handle the math and trivia modes, respectfully. 
 
+For more information on the project, please go to 
+
 ## How to Play:
 
 To play our game, it is very simple. Download all of the files from the Github repository, and ensure that pygame is also downloaded on your device. Once the repository is cloned and pygame is installed, our game can be ran by typing in the command line: "python main.py". This command will create a new pygame window, and the game can then be played!
@@ -31,7 +33,8 @@ https://youtu.be/b1D-0l0GVpE
 
 ## Setting up Project Environment:
 
-In order to run the program, you need to make sure that your computer has the Python Programming Language installed:
+In order to run the program, you need to make sure that your computer has the Python Programming Language installed. 
+Usually, python comes pre-installed on your machine if you have a mac. However, if not, you can click on the following link to install python.
 
 For Windows, follow: https://www.python.org/downloads/windows/ 
 
@@ -39,5 +42,11 @@ For Mac, follow: https://www.python.org/downloads/macos/
 
 For Other Environment, check Python.org for more download information
 
+After you have the python installed on your machine, you then need to install pygame. 
+Pygame is a python module: 
+Follow https://www.pygame.org/wiki/GettingStarted to install pygame on your machine.
+
+Once everything is installed. You should now be able to run our program the Smart Snake!!!
 
 
+## How to Start the Game:
