@@ -40,7 +40,7 @@ For Windows, follow: https://www.python.org/downloads/windows/
 
 For Mac, follow: https://www.python.org/downloads/macos/
 
-For Other Environment, check Python.org for more download information
+For Other Environment, check Python.org for more download information   
 
 
 After you have the python installed on your machine, you then need to install pygame. 
