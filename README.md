@@ -21,7 +21,7 @@ This "Smart Snake" Game is derived from the traditional style snake game. In the
 
 This project is utilizes Python's object-oriented programming. It also uses Pygame as the user interface. The program consists of five python classes: Apple, Game, Trivia, Math, and Snake. Each class handles their respective objects. The Apple class handles the creation of the apple the snake eats, the Game class handles the innerworkings of the game, the Snake class handles the attributes of the snake, the math and trivia classes handle the math and trivia modes, respectfully. 
 
-For more information on the project, please go to 
+For more information on the project, please go to the documentation folder
 
 ## How to Play:
 
@@ -58,6 +58,10 @@ Once you are in the code folder, or the code directory, type:
 ```
 python3 -m main
 ```
+or
+```
+python main.py
+```
 in your terminal
 
 This should launch the game, and you should be able to play the game from there. 
@@ -67,7 +71,7 @@ In the documentation folder, you can find a lot of detailed information regardin
 - EC327_Smart_Snake_ProjectTimeline.pdf: contains our project timeline 
 - EC327_Smart_Snake_ProjectDocumentation.pdf: contains our project overview and technical documentation
 - EC327 _Smart_Snake_StatementofWork.pdf: contains what each person worked on 
-- SmartSnake_ProjectArchitecture.pdf: contains our project architecture
+- SmartSnake_ProjectArchitecture.pptx: contains our project architecture presentation
 
 Folders:
 - Code: Contains all the necessary code to run the game
