@@ -40,7 +40,7 @@ For Windows, follow: https://www.python.org/downloads/windows/
 
 For Mac, follow: https://www.python.org/downloads/macos/
 
-For Other Environment, check Python.org for more download information   
+For Other Environment, check Python.org for more download information 
 
 
 After you have the python installed on your machine, you then need to install pygame. 
@@ -61,3 +61,7 @@ python3 -m main
 in your terminal
 
 This should launch the game, and you should be able to play the game from there. 
+
+## Other Information:
+In the documentation folder, you can find a lot of detailed information regarding our project:
+- 
