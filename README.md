@@ -1,15 +1,17 @@
 # EC327 - Introduction to Software Engineering 
 
-## Final Project - Snake Game with different modes
-
-Initial Snake Game - sourced from CodeBasics
+## Project Information
 
 Team Name: Smart Snake
 
 Team Members:   
-Albert Zhao: albertz@bu.edu   
-Eric Davis: edavis19@bu.edu   
-Benjamin Axline: baxline@bu.edu
+Albert Zhao(U68071332): albertz@bu.edu   
+Eric Davis(U28393843): edavis19@bu.edu   
+Benjamin Axline(U19649803): baxline@bu.edu
+
+Project Start Date: Dec 3rd, 2022
+Project End Date: Dec 12th, 2022
+__See detailed project timeline, go to documents folder and see "EC327 Smark Snake Project Timeline"__ 
 
 
 Overview:   
