@@ -16,7 +16,7 @@ class Math:
 
     def generate_operator(self):
         #determine which operator to use
-        num = random.randint(1,4)
+        num = random.randint(1,3)
         if num == 1:
             operator = '+'
         elif num == 2:
